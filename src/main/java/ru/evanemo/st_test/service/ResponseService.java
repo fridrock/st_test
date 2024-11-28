@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.evanemo.st_test.dto.request.question.AddResponseDto;
 import ru.evanemo.st_test.exception.NotFoundException;
 import ru.evanemo.st_test.model.Response;
+import ru.evanemo.st_test.model.Result;
 import ru.evanemo.st_test.repository.QuestionRepository;
 import ru.evanemo.st_test.repository.ResponseRepository;
 
@@ -40,4 +41,6 @@ public class ResponseService {
     );
     responseRepository.deleteById(id);
   }
+
+
 }

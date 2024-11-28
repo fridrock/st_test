@@ -6,7 +6,9 @@ import ru.evanemo.st_test.dto.request.test.CheckTestDto;
 import ru.evanemo.st_test.dto.request.test.CreateTestDto;
 import ru.evanemo.st_test.dto.response.result.GetResultDto;
 import ru.evanemo.st_test.dto.response.test.GetTestDto;
+import ru.evanemo.st_test.exception.AlreadyExistsException;
 import ru.evanemo.st_test.model.Result;
+import ru.evanemo.st_test.service.ResultService;
 import ru.evanemo.st_test.service.TestService;
 import ru.evanemo.st_test.utils.SecurityContextHolderUtils;
 
@@ -14,10 +16,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static ru.evanemo.st_test.exception.AlreadyExistsException.USER_PASSED_TEST;
+
 @Component
 @RequiredArgsConstructor
 public class TestFacade {
   private final TestService testService;
+  private final ResultService resultService;
   public GetTestDto createTest(CreateTestDto dto) {
     return GetTestDto.fromTest(testService.createTest(dto));
   }

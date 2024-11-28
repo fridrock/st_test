@@ -43,6 +43,7 @@ public class TestService {
     testRepository.deleteById(id);
   }
   public Result checkTest(CheckTestDto dto){
+    resultService.checkIfUserPassedThisTest(dto.getUserId(), dto.getTestId());
     var test = getById(dto.getTestId());
     var questions = test.getQuestions();
     List<UserQuestionResponse> userQuestionResponses = dto.getQuestionResponses();
@@ -64,7 +65,7 @@ public class TestService {
             break;
           }
         }
-        if (flag && q.getResponses().size() == userQuestionResponse.getUserResponsesIds().size()){
+        if (flag && correctResponses.size() == userQuestionResponse.getUserResponsesIds().size()){
           correct+=1;
         }
       }
@@ -79,11 +80,11 @@ public class TestService {
     return resultService.saveResult(saveResultDto);
   }
   private List<Response> getCorrectResponses(Question q){
-    return q.getResponses().stream().filter(r->r.getCorrectness()).collect(Collectors.toList());
+    return q.getResponses().stream().filter(Response::getCorrectness).collect(Collectors.toList());
   }
   private boolean checkExistInCorrect(UUID questionResponseId, List<Response> correctResponses){
-    Response r = correctResponses.stream().filter(cr->cr.getId()==questionResponseId).findAny().orElse(null);
-    return r==null;
+    Response r = correctResponses.stream().filter(cr->cr.getId().equals(questionResponseId)).findAny().orElse(null);
+    return r!=null;
   }
 }
 

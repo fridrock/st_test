@@ -16,6 +16,7 @@ import ru.evanemo.st_test.repository.TestRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import static ru.evanemo.st_test.exception.NotFoundException.QUESTION_BY_ID;
@@ -53,5 +54,8 @@ public class QuestionService {
         ()->new NotFoundException(String.format(QUESTION_BY_ID, id))
     );
     questionRepository.deleteById(id);
+  }
+  public List<Question> getTestQuestions(UUID testId){
+    return questionRepository.getQuestionsByTestId(testId);
   }
 }

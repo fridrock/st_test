@@ -16,12 +16,14 @@ import java.util.UUID;
 @Builder
 public class GetResultDto {
   private UUID testId;
+  private String testName;
   private UUID userId;
   private Integer correct;
   private Integer maxCorrect;
   public static GetResultDto fromResult(Result result){
     return GetResultDto.builder()
         .testId(result.getTest().getId())
+        .testName(result.getTest().getName())
         .userId(result.getUserId())
         .correct(result.getCorrectAmount())
         .maxCorrect(result.getMaxCorrectAmount())
