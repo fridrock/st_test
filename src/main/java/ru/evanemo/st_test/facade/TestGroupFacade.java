@@ -25,5 +25,9 @@ public class TestGroupFacade {
     return testGroupService.getTestsByGroupId(groupId).stream()
         .map(GetTestDto::fromTest).collect(Collectors.toList());
   }
+
+  public List<UUID> getGroupsByTest(UUID testId) {
+    return testGroupService.getGroupsByTest(testId);
+  }
 }
 

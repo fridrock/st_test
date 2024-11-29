@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.evanemo.st_test.dto.request.testgroup.GroupToTestDto;
 import ru.evanemo.st_test.dto.response.test.GetTestDto;
@@ -29,6 +30,11 @@ public class TestGroupController {
   @PreAuthorize("hasAuthority('TEACHER')")
   public ResponseEntity<TestGroup> addGroupToTest(@RequestBody GroupToTestDto dto){
     return ResponseEntity.ok(testGroupFacade.addGroupToTest(dto));
+  }
+  @GetMapping
+  @PreAuthorize("hasAuthority('TEACHER')")
+  public ResponseEntity<List<UUID>> getGroupsByTest(@RequestParam("testId") UUID testId){
+    return ResponseEntity.ok(testGroupFacade.getGroupsByTest(testId));
   }
   @DeleteMapping
   @PreAuthorize("hasAuthority('TEACHER')")

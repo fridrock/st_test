@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface TestGroupRepository extends JpaRepository<TestGroup, Long> {
   Optional<TestGroup> findByTestIdAndGroupId(UUID testId, UUID groupId);
   List<TestGroup> findByGroupId(UUID groupId);
+
+  List<TestGroup> findByTestId(UUID testId);
 }

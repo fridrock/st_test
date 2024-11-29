@@ -17,4 +17,8 @@ public class ResultFacade {
     return resultService.getStudentResults(studentId).stream()
         .map(GetResultDto::fromResult).collect(Collectors.toList());
   }
+
+  public GetResultDto getStudentResult(UUID userId, UUID testId) {
+    return GetResultDto.fromResult(resultService.getStudentResult(userId, testId));
+  }
 }

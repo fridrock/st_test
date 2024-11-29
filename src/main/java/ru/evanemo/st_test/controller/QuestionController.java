@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.evanemo.st_test.dto.request.question.CreateQuestionDto;
 import ru.evanemo.st_test.dto.response.question.GetQuestionDto;
 import ru.evanemo.st_test.facade.QuestionFacade;
-import ru.evanemo.st_test.service.QuestionService;
 
 import java.util.List;
 import java.util.UUID;

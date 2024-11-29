@@ -49,4 +49,8 @@ public class TestGroupService {
     var testGroups = testGroupRepository.findByGroupId(groupId);
     return testGroups.stream().map(testGroup-> testService.getById(testGroup.getTestId())).collect(Collectors.toList());
   }
+
+  public List<UUID> getGroupsByTest(UUID testId) {
+    return testGroupRepository.findByTestId(testId).stream().map(TestGroup::getGroupId).collect(Collectors.toList());
+  }
 }
