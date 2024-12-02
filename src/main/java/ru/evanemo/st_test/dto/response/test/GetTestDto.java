@@ -7,6 +7,7 @@ import lombok.Setter;
 import ru.evanemo.st_test.dto.response.question.GetQuestionDto;
 import ru.evanemo.st_test.model.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,7 +22,12 @@ public class GetTestDto {
   private String name;
   private List<GetQuestionDto> questions;
   public static GetTestDto fromTest(Test test){
-    var questionDtos = test.getQuestions().stream().map(GetQuestionDto::fromQuestion).collect(Collectors.toList());
+    List<GetQuestionDto> questionDtos;
+    if(test.getQuestions()!=null){
+      questionDtos = test.getQuestions().stream().map(GetQuestionDto::fromQuestion).collect(Collectors.toList());
+    }else{
+      questionDtos = Collections.emptyList();
+    }
     return new GetTestDto(test.getId(), test.getTeacherId(), test.getName(), questionDtos);
   }
 }
